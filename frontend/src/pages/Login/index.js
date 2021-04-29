@@ -1,30 +1,28 @@
 import React from 'react';
-import { Twitter } from 'styled-icons/boxicons-logos';
-import { User, At } from 'styled-icons/boxicons-regular';
-
 import {
     Container,
     LoginContainer,
     TwitterLogo,
     InputContainer,
     Input,
-    UserIcon,
     AtIcon,
-    LoginButton
+    PasswordIcon,
+    LoginButton,
+    InputPassword
 } from './styles';
 
 import { useState } from 'react';
 
 export default function Login({ history }) {
-    const [name, setName] = useState('');
     const [username, setUsername] = useState('');
-    const nameLabel = 'Name';
+    const [password, setPassword] = useState('');
     const usernameLabel = 'Username';
+    const passwordLabel = 'Password';
   
     function handleButtonClick() {
       sessionStorage.setItem('username', username);
-      sessionStorage.setItem('name', name);
-      if (sessionStorage.getItem('username') && sessionStorage.getItem('name')) {
+      sessionStorage.setItem('password', password);
+      if (sessionStorage.getItem('username') && sessionStorage.getItem('password')) {
         history.push('/');
       }
     }
@@ -34,19 +32,20 @@ export default function Login({ history }) {
         <LoginContainer>
           <TwitterLogo />
           <InputContainer>
-            <UserIcon />
+            <AtIcon />
             <Input
-              value={name}
-              placeholder={nameLabel}
-              onChange={e => setName(e.target.value)}
+                value={username}
+                placeholder={usernameLabel}
+                onChange={e => setUsername(e.target.value)}
             />
           </InputContainer>
           <InputContainer>
-            <AtIcon />
-            <Input
-              value={username}
-              placeholder={usernameLabel}
-              onChange={e => setUsername(e.target.value)}
+            <PasswordIcon />
+            <InputPassword
+                type="password"
+                value={password}
+                placeholder={passwordLabel}
+                onChange={e => setPassword(e.target.value)}
             />
           </InputContainer>
           <LoginButton onClick={() => handleButtonClick()}>Sign in</LoginButton>
