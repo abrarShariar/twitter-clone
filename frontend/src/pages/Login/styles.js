@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { blue, grey, darkGrey, darkBlue } from '../../global-styles';
 import { Twitter } from 'styled-icons/boxicons-logos';
-import { User, At } from 'styled-icons/boxicons-regular';
+import { At } from 'styled-icons/boxicons-regular';
 import { LockPassword } from 'styled-icons/remix-line';
 
 export const Container = styled.div`
@@ -56,14 +56,6 @@ export const InputPassword = styled.input`
   ::placeholder {
     color: ${darkGrey};
   }
-`;
-
-
-export const UserIcon = styled(User).attrs({
-  height: '20px'
-})`
-  color: ${darkGrey};
-  margin-right: 10px;
 `;
 
 export const AtIcon = styled(At).attrs({

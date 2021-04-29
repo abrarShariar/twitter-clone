@@ -13,12 +13,6 @@ export const GlobalStyles = createGlobalStyle`
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 body {
   background: #fff;
 }
