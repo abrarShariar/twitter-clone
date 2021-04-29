@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { grey, blue, lightBlue } from '../../../global-styles';
 import { Star } from 'styled-icons/boxicons-regular';
+import { Twitter } from 'styled-icons/boxicons-logos';
 
 export const Container = styled.div`
   display: flex;
@@ -31,3 +32,11 @@ export const StarIcon = styled(Star).attrs({
     border-radius: 50%;
   }
 `;
+
+export const TwitterLogo = styled(Twitter).attrs({
+    height: '30px'
+  })`
+    color: ${blue};
+    margin-bottom: 5px;
+  `;
+  

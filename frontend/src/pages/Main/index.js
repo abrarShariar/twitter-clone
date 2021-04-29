@@ -6,7 +6,7 @@ import Feed from '../../components/Feed';
 export default function Main() {
   return (
     <Container>
-      <Column>
+      <Column width="50%" justifyCenter>
         <Feed/>
       </Column>
     </Container>

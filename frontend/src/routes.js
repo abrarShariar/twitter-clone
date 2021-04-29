@@ -5,10 +5,9 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 
 function isAuthenticated() {
-    return true;
-    // const username = sessionStorage.getItem('username');
-    // const name = sessionStorage.getItem('name');
-    // return username && name;
+    const username = sessionStorage.getItem('username');
+    const name = sessionStorage.getItem('password');
+    return username && name;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

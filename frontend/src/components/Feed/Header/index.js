@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, Title, StarIcon } from './styles';
+import { Container, Title, TwitterLogo } from './styles';
 
 export default function Header() {
   return (
     <Container>
-      <Title>Home</Title>
-      <StarIcon></StarIcon>
+      <Title>
+          <TwitterLogo/>
+            @{sessionStorage.getItem('username')}
+        </Title>
     </Container>
   );
 }
