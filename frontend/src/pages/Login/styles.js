@@ -68,7 +68,7 @@ export const AtIcon = styled(At).attrs({
 export const LoginButton = styled.button`
   width: 320px;
   height: 50px;
-  background-color: ${blue};
+  background-color: ${darkBlue};
   border: none;
   border-radius: 40px;
   margin-top: 20px;
@@ -78,6 +78,22 @@ export const LoginButton = styled.button`
   font-size: 18px;
   :hover {
     background-color: ${darkBlue};
+  }
+`;
+
+export const SignUpButton = styled.button`
+  width: 320px;
+  height: 50px;
+  background-color: ${blue};
+  border: none;
+  border-radius: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  :hover {
+    background-color: ${blue};
   }
 `;
 

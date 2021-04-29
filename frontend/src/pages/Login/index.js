@@ -8,6 +8,7 @@ import {
     AtIcon,
     PasswordIcon,
     LoginButton,
+    SignUpButton,
     InputPassword
 } from './styles';
 
@@ -48,7 +49,8 @@ export default function Login({ history }) {
                 onChange={e => setPassword(e.target.value)}
             />
           </InputContainer>
-          <LoginButton onClick={() => handleButtonClick()}>Sign in</LoginButton>
+          <SignUpButton onClick={() => handleButtonClick()}>Sign up</SignUpButton>
+          <LoginButton onClick={() => handleButtonClick()}>Log in</LoginButton>
         </LoginContainer>
       </Container>
     );
