@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { blue, grey, darkGrey, darkBlue } from '../../global-styles';
 import { Twitter } from 'styled-icons/boxicons-logos';
 import { User, At } from 'styled-icons/boxicons-regular';
+import { LockPassword } from 'styled-icons/remix-line';
 
 export const Container = styled.div`
   height: 100%;
@@ -46,6 +47,18 @@ export const Input = styled.input`
   }
 `;
 
+export const InputPassword = styled.input`
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  type: password;
+  ::placeholder {
+    color: ${darkGrey};
+  }
+`;
+
+
 export const UserIcon = styled(User).attrs({
   height: '20px'
 })`
@@ -75,3 +88,11 @@ export const LoginButton = styled.button`
     background-color: ${darkBlue};
   }
 `;
+
+export const PasswordIcon = styled(LockPassword).attrs({
+    height: '20px'
+  })`
+    color: ${darkGrey};
+    margin-right: 10px;
+  `;
+  
