@@ -5,9 +5,10 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 
 function isAuthenticated() {
-    const username = sessionStorage.getItem('username');
-    const name = sessionStorage.getItem('name');
-    return username && name;
+    return true;
+    // const username = sessionStorage.getItem('username');
+    // const name = sessionStorage.getItem('name');
+    // return username && name;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -32,7 +33,11 @@ export default function Routes() {
               isAuthenticated() ? <Redirect to="/" /> : <Login {...props} />
             }
           />
-          <PrivateRoute path="/" exact component={Main} />
+          <PrivateRoute 
+            path="/" 
+            exact 
+            component={Main} 
+            />
         </Switch>
       </BrowserRouter>
     );

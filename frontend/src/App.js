@@ -2,7 +2,7 @@ import React from 'react';
 import Routes from './routes';
 import { GlobalStyles } from './global-styles.js';
 
-function App() {
+export default function App() {
     return (
       <div>
         <GlobalStyles />
@@ -10,5 +10,3 @@ function App() {
       </div>
     );
 }
-
-export default App;
