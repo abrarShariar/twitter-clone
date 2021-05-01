@@ -1,0 +1,6 @@
+node_modules/*
+public/*
+bin/*
+.env
+.DS_store
+db/*.db
