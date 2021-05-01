@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const DBManager = require('../db/dbmanager');
 
+/**
+ * Register a new user
+ */
 router.post('/register', [ registrationValidator ],
     (req, res) => {
         const errors = validationResult(req);
@@ -23,6 +26,9 @@ router.post('/register', [ registrationValidator ],
         }
 });
 
+/**
+ * Login a user
+ */
 router.post('/login', [ loginValidator ],
     async (req, res) => {
         const errors = validationResult(req);

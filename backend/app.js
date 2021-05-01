@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const authRouter = require('./routes/auth');
+const tweetRouter = require('./routes/tweets');
+
 
 const app = express();
 // set up middlewares
@@ -18,6 +20,7 @@ app.use(bodyParser.json());
 
 // set up custom routes
 app.use('/api/auth', authRouter);
+app.use('/api/tweet', tweetRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
