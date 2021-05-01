@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const { check, oneOf, validationResult } = require('express-validator');
+
 const registrationValidator = [
     body('email').normalizeEmail().isEmail().withMessage('Must be a valid email.'),
     body('username').isString().withMessage('Username must be string.'),
