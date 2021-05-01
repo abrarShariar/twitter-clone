@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { registrationValidator } = require('../validators/auth.validator');
+const { registrationValidator, loginValidator } = require('../validators/auth.validator');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const DBManager = require('../db/dbmanager');
 
-router.post('/register',[ registrationValidator ],
+router.post('/register', [ registrationValidator ],
     (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -16,14 +16,14 @@ router.post('/register',[ registrationValidator ],
             const { email, username, password } = req.body;
             const hashedPassword = bcrypt.hashSync(password, saltRounds);
             DBManager().createUser({ email, username, hashedPassword });
-            return res.status(200).json({ 'message': 'Successfully created a User.'})
+            return res.status(200).json({ 'message': 'Successfully created a User!'})
         } catch (error) {
             console.log(error);
             return res.status(500).json({ errors: error });
         }
 });
 
-router.post('/login', 
+router.post('/login', [ loginValidator ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -34,7 +34,7 @@ router.post('/login',
             const user = await DBManager().getUserByUsername(username);
             const isPasswordMatch = bcrypt.compareSync(password, user.password);
             return user['username'] && isPasswordMatch ?
-                        res.status(200).json({ 'message': `Found User with username: ${username}` }) :
+                        res.status(200).json({ 'message': `Found User with username: ${username}!` }) :
                         res.status(404).json({ 'message': 'User not found!' });
         } catch (errors) {
             console.log(errors);
