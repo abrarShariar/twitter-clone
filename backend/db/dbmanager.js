@@ -31,6 +31,18 @@ const DBManager = () => {
             `;
     
             db.run(sql);
+        },
+
+        getUserByUsername: function ({ username }) {
+            const sql = `
+                SELECT 
+                    username, password
+                FROM 
+                    Users
+                WHERE
+                    username = "${username}"
+            `;
+            return db.get(sql);
         }
     }
 }
