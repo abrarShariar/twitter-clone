@@ -8,7 +8,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const authRouter = require('./routes/auth');
 const tweetRouter = require('./routes/tweets');
-
+const DBManager = require('./db/dbmanager');
 
 const app = express();
 // set up middlewares

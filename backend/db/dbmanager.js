@@ -20,6 +20,18 @@ const DBManager = () => {
             `;
             db.run(sql);
         },
+
+        createTweetsTable: function() {
+            const sql = `
+                CREATE TABLE IF NOT EXISTS Tweets (
+                    id INTEGER PRIMARY KEY,
+                    user_id INTEGER NOT NULL,
+                    tweet TEXT,
+                    FOREIGN KEY(user_id) REFERENCES Users(id)
+                )
+            `;
+            db.run(sql);
+        },
     
         createUser: function ({ email, username, hashedPassword }) {
             const sql = `
@@ -52,7 +64,26 @@ const DBManager = () => {
                     resolve(row);
                 });
             });
-           
+        },
+
+        createTweet: function ({userId, tweet}) {
+            const sql = `
+                INSERT INTO Tweets (
+                    user_id, tweet
+                ) VALUES (
+                    "${userId}", "${tweet}"
+                )
+            `;
+            db.run(sql);
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(false);
+                    }
+                    resolve(true);
+                });
+            })
         }
     }
 }

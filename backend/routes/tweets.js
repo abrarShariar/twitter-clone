@@ -8,15 +8,18 @@ const DBManager = require('../db/dbmanager');
  * Create a new tweet
  */
 router.post('/', [ tweetCreateValidator ], 
-    (req, res) => {
+    async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         }
         try {
-            console.log("Here");
+            const { userId, tweet } = req.body;
+            const isTweetCreated = await DBManager().createTweet({ userId, tweet });
+            return isTweetCreated 
+                    ? res.status(200).json({ userId, tweet, "message": "Successfully created new Tweet" }) 
+                    : res.status(500).json({ message: "Failed to create new tweet!" }); 
         } catch (error) {
-            console.log(error);
             return res.status(500).json({ errors: error });
         }
 });
