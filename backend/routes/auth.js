@@ -31,9 +31,8 @@ router.post('/login',
         }
         try {
             const { username, password } = req.body;
-            const user = DBManager().getUserByUsername({ username });
-            console.log(user);
-            const isPasswordMatch = bcrypt.compareSync(user['passsword']);
+            const user = await DBManager().getUserByUsername(username);
+            const isPasswordMatch = bcrypt.compareSync(password, user.password);
             return user['username'] && isPasswordMatch ?
                         res.status(200).json({ 'message': `Found User with username: ${username}` }) :
                         res.status(404).json({ 'message': 'User not found!' });

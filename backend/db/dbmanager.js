@@ -33,7 +33,7 @@ const DBManager = () => {
             db.run(sql);
         },
 
-        getUserByUsername: function ({ username }) {
+        getUserByUsername: function (username) {
             const sql = `
                 SELECT 
                     username, password
@@ -42,7 +42,17 @@ const DBManager = () => {
                 WHERE
                     username = "${username}"
             `;
-            return db.get(sql);
+
+            return new Promise((resolve, reject) => {
+                db.get(sql, (err, row) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    resolve(row);
+                });
+            });
+           
         }
     }
 }

@@ -1955,7 +1955,14 @@ source-map@~0.5.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-sqlite3@^5.0.2:
+sqlite-async@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sqlite-async/-/sqlite-async-1.1.1.tgz#0e3a504eefec0188212021a851f9866644df6609"
+  integrity sha512-HTDsYzmUebV2sMvlMbyrLZcnqyfSCBALiTnK+XW6mzYY9LLUC29hJCt5RVc9j/Nl99frHD81dAAt3bEgXjCAlA==
+  dependencies:
+    sqlite3 "^5.0.0"
+
+sqlite3@^5.0.0, sqlite3@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.0.2.tgz#00924adcc001c17686e0a6643b6cbbc2d3965083"
   integrity sha512-1SdTNo+BVU211Xj1csWa8lV6KM0CtucDwRyA0VHl91wEH1Mgh7RxUpI4rVvG7OhHrzCSGaVyW5g8vKvlrk9DJA==
