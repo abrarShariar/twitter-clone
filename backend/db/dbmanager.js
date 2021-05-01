@@ -21,12 +21,12 @@ const DBManager = () => {
             db.run(sql);
         },
     
-        createUser: function ({ email, username, password }) {
+        createUser: function ({ email, username, hashedPassword }) {
             const sql = `
                 INSERT INTO Users (
                     email, username, password
                 ) VALUES (
-                    "${email}", "${username}", "${password}"
+                    "${email}", "${username}", "${hashedPassword}"
                 )
             `;
     

@@ -6,9 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const router = express.Router();
 const authRouter = require('./routes/auth');
-const DBManager = require('./db/dbmanager');
 
 const app = express();
 // set up middlewares
@@ -27,7 +25,6 @@ app.use(function(req, res, next) {
 
 app.listen(process.env.PORT, () => {
   console.log(`Node server running on ${process.env.PORT}`);
-  DBManager().createUsersTable();
 });
 
 module.exports = app;
