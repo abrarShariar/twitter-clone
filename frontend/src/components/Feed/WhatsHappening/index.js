@@ -12,8 +12,9 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function WhatsHappening() {
+export default function WhatsHappening(props) {
     const [tweet, setTweet] = useState('');
+    const { updateTweets } = props;
 
     async function postTweet () {
         try {
@@ -23,8 +24,10 @@ export default function WhatsHappening() {
                 return;
             }
             const resp = await axios.post('http://localhost:8000/api/tweets', { username, tweet });
-            window.alert(resp.data.message);
-            setTweet("");
+            if (resp.status === 200) {
+              setTweet("");
+              updateTweets();
+            }
           } catch (errors) {
             console.log(errors);
           }
@@ -36,7 +39,7 @@ export default function WhatsHappening() {
           <ProfileIcon />
         </ProfileContainer>
         <RightContainer>
-            <TextArea onBlur={e => setTweet(e.target.value)} placehoder="What's Happening Now?"/>
+            <TextArea value={tweet} onChange={e => setTweet(e.target.value)} placeholder="What's Happening Now?"/>
         </RightContainer>
         <TweetButton onClick={() => postTweet()}>Tweet</TweetButton>
       </Container>

@@ -26,7 +26,7 @@ export default function Feed() {
     return (
       <Container>
         <Header />
-        <WhatsHappening/>
+        <WhatsHappening updateTweets={getTweets}/>
         <Tweets tweets={tweets} />
       </Container>
     );

@@ -10,7 +10,7 @@ const DBManager = require('../db/dbmanager');
  * Register a new user
  */
 router.post('/register', [ registrationValidator ],
-    (req, res) => {
+    async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res.status(422).json({ errors: errors.array() });
@@ -18,8 +18,11 @@ router.post('/register', [ registrationValidator ],
         try {
             const { username, password } = req.body;
             const hashedPassword = bcrypt.hashSync(password, saltRounds);
-            DBManager().createUser({ username, hashedPassword });
-            return res.status(200).json({ 'message': `Successfully created a new user with username: @${username}`})
+            const isUserCreate = await DBManager().createUser({ username, hashedPassword });
+            console.log(isUserCreate);
+            return isUserCreate ? 
+                        res.status(200).json({ 'message': `Successfully created a new user with username: @${username}`}):
+                        res.status(500).json({ 'message': 'Failed to create user!' })
         } catch (error) {
             console.log(error);
             return res.status(500).json({ errors: error });

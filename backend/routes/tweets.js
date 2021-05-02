@@ -16,7 +16,6 @@ router.post('/', [ tweetCreateValidator ],
         try {
             const { username, tweet } = req.body;
             const user = await DBManager().getUserByKey('username', username);
-            console.log(user);
             const isTweetCreated = await DBManager().createTweet({ userId: user['id'], tweet });
             return isTweetCreated 
                     ? res.status(200).json({ username, tweet, "message": "Successfully created new Tweet" }) 

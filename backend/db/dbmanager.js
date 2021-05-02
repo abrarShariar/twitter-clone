@@ -18,7 +18,16 @@ const DBManager = () => {
                     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             `;
-            db.run(sql);
+
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    resolve(true);
+                });
+            });
         },
 
         createTweetsTable: function() {
@@ -31,7 +40,15 @@ const DBManager = () => {
                     FOREIGN KEY(user_id) REFERENCES Users(id)
                 )
             `;
-            db.run(sql);
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    resolve(true);
+                });
+            });
         },
     
         createUser: function ({ username, hashedPassword }) {
@@ -42,8 +59,15 @@ const DBManager = () => {
                     "${username}", "${hashedPassword}"
                 )
             `;
-    
-            db.run(sql);
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(false);
+                    }
+                    resolve(true);
+                });
+            });
         },
 
         getUserByKey: function (key, value) {
