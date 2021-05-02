@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 // set up custom routes
 app.use('/api/auth', authRouter);
-app.use('/api/tweet', tweetRouter);
+app.use('/api/tweets', tweetRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

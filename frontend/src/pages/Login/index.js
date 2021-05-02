@@ -37,6 +37,7 @@ export default function Login({ history }) {
         const resp = await axios.post('http://localhost:8000/api/auth/login', { username, password });
         setMessage(resp.data.message);
         sessionStorage.setItem('isLoggedInTwitter', true);
+        sessionStorage.setItem('username', username);
         history.push('/');
       } catch (errors) {
         console.log(errors);

@@ -75,7 +75,6 @@ const DBManager = () => {
                     "${userId}", "${tweet}"
                 )
             `;
-            db.run(sql);
             return new Promise((resolve, reject) => {
                 db.run(sql, (err) => {
                     if (err) {
@@ -90,9 +89,13 @@ const DBManager = () => {
         getTweets: function (limit = 100, offset = 0) {
             const sql = `
                 SELECT 
-                    id, user_id, tweet
+                    Tweets.id, Tweets.user_id, Users.username, Tweets.tweet, Tweets.timestamp
                 FROM 
                     Tweets
+                JOIN
+                    Users
+                ON 
+                    Tweets.user_id = Users.id
                 LIMIT ${limit}
                 OFFSET ${offset}
             `;

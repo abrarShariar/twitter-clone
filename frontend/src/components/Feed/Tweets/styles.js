@@ -1,17 +1,9 @@
 import styled from 'styled-components';
 import { blue } from '../../../global-styles';
 import { UserCircle } from 'styled-icons/boxicons-solid';
-import { Retweet as RT } from '@styled-icons/entypo/Retweet';
-import { Export as Ex } from '@styled-icons/boxicons-regular/Export';
 import { Twitter } from 'styled-icons/boxicons-logos';
 
 import { grey, darkGrey, lightGrey, lightBlue } from '../../../global-styles';
-import {
-  ChevronDown,
-  MessageRounded,
-  Heart
-} from 'styled-icons/boxicons-regular';
-import { StatsBars } from 'styled-icons/icomoon';
 
 export const iconHover = `:hover {
   background-color: ${lightBlue};
@@ -86,16 +78,6 @@ export const TweetData = styled.span`
   margin-left: 10px;
 `;
 
-export const ArrowDown = styled(ChevronDown).attrs({
-  height: '35px'
-})`
-  color: ${darkGrey};
-  padding: 5px;
-  border-radius: 50%;
-  margin-right: 10px;
-  ${iconHover}
-`;
-
 export const Content = styled.div`
   width: 100%;
   min-height: 45px;
@@ -107,43 +89,6 @@ export const Actions = styled.div`
   min-height: 30px;
   display: flex;
   justify-content: space-between;
-`;
-
-const tweetIconsStyle = `
-  color: ${darkGrey};
-  padding: 5px;
-  border-radius: 50%;
-  ${iconHover}
-`;
-
-export const Answer = styled(MessageRounded).attrs({
-  height: '30px'
-})`
-  ${tweetIconsStyle}
-`;
-
-export const Retweet = styled(RT).attrs({
-  height: '30px'
-})`
-  ${tweetIconsStyle}
-`;
-
-export const Like = styled(Heart).attrs({
-  height: '30px'
-})`
-  ${tweetIconsStyle}
-`;
-
-export const Export = styled(Ex).attrs({
-  height: '30px'
-})`
-  ${tweetIconsStyle}
-`;
-
-export const Stats = styled(StatsBars).attrs({
-  height: '30px'
-})`
-  ${tweetIconsStyle}
 `;
 
 export const TwitterLogo = styled(Twitter).attrs({
