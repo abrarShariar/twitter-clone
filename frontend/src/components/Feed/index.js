@@ -5,6 +5,7 @@ import Tweets from './Tweets';
 import WhatsHappening from './WhatsHappening';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+require('dotenv').config()
 
 export default function Feed() {
     const [tweets, setTweets] = useState([]); 
@@ -15,7 +16,7 @@ export default function Feed() {
 
     async function getTweets() {
       try {
-        const resp = await axios.get('http://localhost:8000/api/tweets');
+        const resp = await axios.get(`${process.env.REACT_APP_API_URL}/tweets`);
         console.log(resp.data.tweetsList);
         setTweets(resp.data.tweetsList);
       } catch (errors) {

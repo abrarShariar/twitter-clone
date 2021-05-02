@@ -14,6 +14,7 @@ import {
 
 import { useState } from 'react';
 import axios from 'axios';
+require('dotenv').config()
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ export default function Login({ history }) {
 
     async function handleSignUp () {
       try {
-        const resp = await axios.post('http://localhost:8000/api/auth/register', { username, password });
+        const resp = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { username, password });
         setMessage(resp.data.message);
       } catch (errors) {
         console.log(errors);
@@ -34,7 +35,7 @@ export default function Login({ history }) {
 
     async function handleLogin () {
       try {
-        const resp = await axios.post('http://localhost:8000/api/auth/login', { username, password });
+        const resp = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { username, password });
         setMessage(resp.data.message);
         console.log(resp.status);
         if (resp.status === 200) {

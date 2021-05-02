@@ -11,6 +11,7 @@ import {
 
 import { useState } from 'react';
 import axios from 'axios';
+require('dotenv').config()
 
 export default function WhatsHappening(props) {
     const [tweet, setTweet] = useState('');
@@ -23,7 +24,7 @@ export default function WhatsHappening(props) {
                 window.alert("Please write a cool tweet!");
                 return;
             }
-            const resp = await axios.post('http://localhost:8000/api/tweets', { username, tweet });
+            const resp = await axios.post(`${process.env.REACT_APP_API_URL}/tweets`, { username, tweet });
             if (resp.status === 200) {
               setTweet("");
               updateTweets();
