@@ -6,7 +6,9 @@ This document contains all the API endpoints and their detailed parameters.
 Register a new user on sign up.
 
 **URL** : `/api/auth/register`
+
 **Method** : `POST`
+
 **Request Body**
 
 ```json
@@ -21,7 +23,9 @@ Register a new user on sign up.
 Login a new user on sign up.
 
 **URL** : `/api/auth/login`
+
 **Method** : `POST`
+
 **Request Body**
 
 ```json
@@ -37,7 +41,9 @@ Login a new user on sign up.
 Create a new tweet
 
 **URL** : `/api/tweets`
+
 **Method** : `POST`
+
 **Request Body**
 
 ```json
@@ -52,7 +58,9 @@ Create a new tweet
 Create a new tweet
 
 **URL** : `/api/tweets`
+
 **Method** : `GET`
+
 **Query Parameters (Optional)**
 ```json
 {
