@@ -18,6 +18,10 @@ export default function WhatsHappening() {
     async function postTweet () {
         try {
             const username = sessionStorage.getItem('username');
+            if (!tweet) {
+                window.alert("Please write a cool tweet!");
+                return;
+            }
             const resp = await axios.post('http://localhost:8000/api/tweets', { username, tweet });
             window.alert(resp.data.message);
             setTweet("");
