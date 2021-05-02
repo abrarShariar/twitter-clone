@@ -20,7 +20,7 @@ Register a new user on sign up.
 
 ### Login a user
 
-Login a new user on sign up.
+Login a user on sign in.
 
 **URL** : `/api/auth/login`
 
