@@ -6,7 +6,7 @@ import Login from './pages/Login';
 
 function isAuthenticated() {
     const isLoggedInTwitter = sessionStorage.getItem('isLoggedInTwitter');
-    return isLoggedInTwitter === true;
+    return isLoggedInTwitter;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
