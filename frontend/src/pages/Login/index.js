@@ -36,13 +36,17 @@ export default function Login({ history }) {
       try {
         const resp = await axios.post('http://localhost:8000/api/auth/login', { username, password });
         setMessage(resp.data.message);
-        sessionStorage.setItem('isLoggedInTwitter', true);
-        sessionStorage.setItem('username', username);
-        history.push('/');
+        console.log(resp.status);
+        if (resp.status === 200) {
+          console.log("logged in");
+          sessionStorage.setItem('isLoggedInTwitter', true);
+          sessionStorage.setItem('username', username);
+          history.push('/');
+        }
       } catch (errors) {
         console.log(errors);
         setMessage("Failed to login user.")
-        sessionStorage.setItem('isLoggedInTwitter', false);
+        sessionStorage.removeItem('isLoggedInTwitter');
       }
     }
 
