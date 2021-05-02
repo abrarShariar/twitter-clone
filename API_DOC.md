@@ -1,4 +1,5 @@
-
+# API Documentation
+This document contains all the API endpoints and their detailed parameters.
 
 ### Register a new user
 
@@ -52,7 +53,7 @@ Create a new tweet
 }
 ```
 
-### Get all TWeets
+### Get all Tweets
 
 Create a new tweet
 
