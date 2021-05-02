@@ -15,7 +15,8 @@ const DBManager = () => {
                     id INTEGER PRIMARY KEY,
                     email TEXT NOT NULL UNIQUE,
                     username TEXT NOT NULL UNIQUE,
-                    password TEXT NOT NULL
+                    password TEXT NOT NULL,
+                    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             `;
             db.run(sql);
@@ -27,6 +28,7 @@ const DBManager = () => {
                     id INTEGER PRIMARY KEY,
                     user_id INTEGER NOT NULL,
                     tweet TEXT,
+                    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY(user_id) REFERENCES Users(id)
                 )
             `;
