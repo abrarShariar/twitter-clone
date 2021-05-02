@@ -19,7 +19,7 @@ router.post('/register', [ registrationValidator ],
             const { username, password } = req.body;
             const hashedPassword = bcrypt.hashSync(password, saltRounds);
             DBManager().createUser({ username, hashedPassword });
-            return res.status(200).json({ 'message': 'Successfully created a User!'})
+            return res.status(200).json({ 'message': `Successfully created a new user with username: @${username}`})
         } catch (error) {
             console.log(error);
             return res.status(500).json({ errors: error });
@@ -40,7 +40,7 @@ router.post('/login', [ loginValidator ],
             const user = await DBManager().getUserByUsername(username);
             const isPasswordMatch = bcrypt.compareSync(password, user.password);
             return user['username'] && isPasswordMatch ?
-                        res.status(200).json({ 'message': `Found User with username: ${username}!` }) :
+                        res.status(200).json({ 'message': `Successfully logging in user with username: ${username}!` }) :
                         res.status(404).json({ 'message': 'User not found!' });
         } catch (errors) {
             console.log(errors);

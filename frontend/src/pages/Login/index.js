@@ -13,21 +13,38 @@ import {
 } from './styles';
 
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const usernameLabel = 'Username';
     const passwordLabel = 'Password';
-  
-    function handleButtonClick() {
-      sessionStorage.setItem('username', username);
-      sessionStorage.setItem('password', password);
-      if (sessionStorage.getItem('username') && sessionStorage.getItem('password')) {
-        history.push('/');
+
+    async function handleSignUp () {
+      try {
+        const resp = await axios.post('http://localhost:8000/api/auth/register', { username, password });
+        setMessage(resp.data.message);
+      } catch (errors) {
+        console.log(errors);
+        setMessage("Failed to create a new user.");
       }
     }
-  
+
+    async function handleLogin () {
+      try {
+        const resp = await axios.post('http://localhost:8000/api/auth/login', { username, password });
+        setMessage(resp.data.message);
+        sessionStorage.setItem('isLoggedInTwitter', true);
+        history.push('/');
+      } catch (errors) {
+        console.log(errors);
+        setMessage("Failed to login user.")
+        sessionStorage.setItem('isLoggedInTwitter', false);
+      }
+    }
+
     return (
       <Container>
         <LoginContainer>
@@ -49,9 +66,14 @@ export default function Login({ history }) {
                 onChange={e => setPassword(e.target.value)}
             />
           </InputContainer>
-          <SignUpButton onClick={() => handleButtonClick()}>Sign up</SignUpButton>
-          <LoginButton onClick={() => handleButtonClick()}>Log in</LoginButton>
+          <SignUpButton onClick={() => handleSignUp()}>Sign up</SignUpButton>
+          <LoginButton onClick={() => handleLogin()}>Log in</LoginButton>
+          <br/>
+          <div>
+            {message}
+          </div>
         </LoginContainer>
+
       </Container>
     );
   }
