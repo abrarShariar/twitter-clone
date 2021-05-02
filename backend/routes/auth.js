@@ -24,7 +24,6 @@ router.post('/register', [ registrationValidator ],
             const { username, password } = req.body;
             const hashedPassword = bcrypt.hashSync(password, saltRounds);
             const isUserCreate = await DBManager().createUser({ username, hashedPassword });
-            console.log(isUserCreate);
             return isUserCreate ? 
                         res.status(200).json({ 'message': `Successfully created a new user with username: @${username}`}):
                         res.status(500).json({ 'message': 'Failed to create user!' })

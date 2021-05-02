@@ -17,7 +17,6 @@ export default function Feed() {
     async function getTweets() {
       try {
         const resp = await axios.get(`${process.env.REACT_APP_API_URL}/tweets`);
-        console.log(resp.data.tweetsList);
         setTweets(resp.data.tweetsList);
       } catch (errors) {
         console.log(errors);

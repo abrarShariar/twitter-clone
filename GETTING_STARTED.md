@@ -5,6 +5,7 @@ Please run the followings to set up and running the project:
 - Clone the project: 
 ```
 > git clone https://github.com/linkx-assignments/msg-web-abrarShariar.git
+> cd msg-web-abrarShariar
 ```
 
 - Set up the backend
