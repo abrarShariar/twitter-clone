@@ -41,7 +41,7 @@ export const TwitterLogo = styled(Twitter).attrs({
   `;
   
 export const LogoutButton = styled.button`
-    width: 100px;
+    width: 90px;
     height: 40px;
     background-color: ${blue};
     border: none;

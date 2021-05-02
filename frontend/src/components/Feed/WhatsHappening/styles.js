@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darkGrey, grey } from '../../../global-styles';
+import { darkGrey, grey, blue, darkBlue } from '../../../global-styles';
 import { UserCircle } from 'styled-icons/boxicons-solid';
 
 export const Container = styled.div`
@@ -35,10 +35,28 @@ export const RightContainer = styled.div`
 
 export const TextArea = styled.textarea`
   width: 100%;
-  height: 60%;
+  height: 30%;
   padding: 20px 10px;
   border: none;
   font-size: 20px;
   overflow: hidden;
   resize: none;
+`;
+
+export const TweetButton = styled.button`
+    width: 90px;
+    height: 40px;
+    background-color: ${blue};
+    border: none;
+    border-radius: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    float: right;
+    margin-top: 100px;
+    :hover {
+      background-color: ${darkBlue};
+    }
 `;

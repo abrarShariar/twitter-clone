@@ -37,7 +37,7 @@ router.post('/login', [ loginValidator ],
         }
         try {
             const { username, password } = req.body;
-            const user = await DBManager().getUserByUsername(username);
+            const user = await DBManager().getUserByKey('username', username);
             const isPasswordMatch = bcrypt.compareSync(password, user.password);
             return user['username'] && isPasswordMatch ?
                         res.status(200).json({ 'message': `Successfully logging in user with username: ${username}!` }) :

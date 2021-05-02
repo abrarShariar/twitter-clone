@@ -46,14 +46,14 @@ const DBManager = () => {
             db.run(sql);
         },
 
-        getUserByUsername: function (username) {
+        getUserByKey: function (key, value) {
             const sql = `
                 SELECT 
-                    username, password
+                    id, username, password
                 FROM 
                     Users
                 WHERE
-                    username = "${username}"
+                    ${key} = "${value}"
             `;
 
             return new Promise((resolve, reject) => {
@@ -96,6 +96,7 @@ const DBManager = () => {
                     Users
                 ON 
                     Tweets.user_id = Users.id
+                ORDER BY Tweets.timestamp DESC
                 LIMIT ${limit}
                 OFFSET ${offset}
             `;
