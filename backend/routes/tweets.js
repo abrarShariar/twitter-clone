@@ -24,4 +24,17 @@ router.post('/', [ tweetCreateValidator ],
         }
 });
 
+/**
+ * Get all tweets with offset and limit
+ */
+router.get('/', async (req, res) => {
+    try {
+        const { limit = 100, offset = 0 } = req.query;
+        const tweetsList = await DBManager().getTweets(limit, offset);
+        return res.status(200).json({ tweetsList });
+    } catch (error) {
+        return res.status(500).json({ errors: error });
+    }
+});
+
 module.exports = router;

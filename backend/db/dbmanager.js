@@ -84,7 +84,30 @@ const DBManager = () => {
                     resolve(true);
                 });
             })
+        },
+
+        getTweets: function (limit = 100, offset = 0) {
+            const sql = `
+                SELECT 
+                    id, user_id, tweet
+                FROM 
+                    Tweets
+                LIMIT ${limit}
+                OFFSET ${offset}
+            `;
+            console.log(sql);
+            return new Promise((resolve, reject) => {
+                db.all(sql, (err, row) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    console.log(row);
+                    resolve(row);
+                });
+            });
         }
+
     }
 }
 
