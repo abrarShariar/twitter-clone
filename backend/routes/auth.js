@@ -7,7 +7,12 @@ const saltRounds = 10;
 const DBManager = require('../db/dbmanager');
 
 /**
- * Register a new user
+ * @api {post} /api/auth/register
+ * @apiDescription Register/Sign up a new user
+ * @apiName register
+ * @apiVersion 1.0.0
+ * @apiParam (RequestBody) {String} username The username of the user to be registered
+ * @apiParam (RequestBody) {String} password The password of the user to be registered
  */
 router.post('/register', [ registrationValidator ],
     async (req, res) => {
@@ -30,7 +35,12 @@ router.post('/register', [ registrationValidator ],
 });
 
 /**
- * Login a user
+ * @api {post} /api/auth/login
+ * @apiDescription Login/Sign in a new user
+ * @apiName login
+ * @apiVersion 1.0.0
+ * @apiParam (RequestBody) {String} username The username of the user to log in
+ * @apiParam (RequestBody) {String} password The password of the user to log in
  */
 router.post('/login', [ loginValidator ],
     async (req, res) => {

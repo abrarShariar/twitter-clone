@@ -5,7 +5,12 @@ const { tweetCreateValidator } = require('../validators/tweet.validator.js');
 const DBManager = require('../db/dbmanager');
 
 /**
- * Create a new tweet
+ * @api {post} /api/tweets
+ * @apiDescription Create a new tweet
+ * @apiName create-tweets
+ * @apiVersion 1.0.0
+ * @apiParam (RequestBody) {String} username The username of the user who tweeted
+ * @apiParam (RequestBody) {String} tweet The tweet 
  */
 router.post('/', [ tweetCreateValidator ], 
     async (req, res) => {
@@ -26,7 +31,12 @@ router.post('/', [ tweetCreateValidator ],
 });
 
 /**
- * Get all tweets with offset and limit
+ * @api {get} /api/tweets
+ * @apiDescription Get all tweets
+ * @apiName get-all-tweets
+ * @apiVersion 1.0.0
+ * @apiParam (RequestQuery) {Number} limit The number of tweets to limit when returning
+ * @apiParam (RequestBody) {Number} offset The number of tweets to offset when returning
  */
 router.get('/', async (req, res) => {
     try {

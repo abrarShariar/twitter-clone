@@ -5,9 +5,11 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "migrate": "node ./db/migrations.js"
+    "migrate": "node ./db/migrations.js",
+    "doc": "apidoc -i src -o apidoc-out && apidoc-markdown -p apidoc-out -o DOCUMENTATION.md && rm -rf apidoc-out"
   },
   "dependencies": {
+    "apidoc-markdown": "^5.2.3",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
@@ -24,6 +26,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "apidoc": "^0.27.1",
     "nodemon": "^2.0.7"
   }
 }
