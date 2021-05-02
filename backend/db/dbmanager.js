@@ -4,7 +4,7 @@ const DBManager = () => {
     const db = new sqlite3.Database('./db/twitter.db', (err) => {
         if (err) {
             return console.error(err.message);
-          }
+        }
         console.log('Connected to the in-memory SQlite database.');
     });
 
@@ -13,7 +13,6 @@ const DBManager = () => {
             const sql = `
                 CREATE TABLE IF NOT EXISTS Users (
                     id INTEGER PRIMARY KEY,
-                    email TEXT NOT NULL UNIQUE,
                     username TEXT NOT NULL UNIQUE,
                     password TEXT NOT NULL,
                     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -35,12 +34,12 @@ const DBManager = () => {
             db.run(sql);
         },
     
-        createUser: function ({ email, username, hashedPassword }) {
+        createUser: function ({ username, hashedPassword }) {
             const sql = `
-                INSERT INTO Users (
-                    email, username, password
+                INSERT INTO Users ( 
+                    username, password
                 ) VALUES (
-                    "${email}", "${username}", "${hashedPassword}"
+                    "${username}", "${hashedPassword}"
                 )
             `;
     
@@ -97,14 +96,11 @@ const DBManager = () => {
                 LIMIT ${limit}
                 OFFSET ${offset}
             `;
-            console.log(sql);
             return new Promise((resolve, reject) => {
                 db.all(sql, (err, row) => {
                     if (err) {
-                        console.error(err.message);
                         reject(err.message);
                     }
-                    console.log(row);
                     resolve(row);
                 });
             });

@@ -16,9 +16,9 @@ router.post('/register', [ registrationValidator ],
           return res.status(422).json({ errors: errors.array() });
         }
         try {
-            const { email, username, password } = req.body;
+            const { username, password } = req.body;
             const hashedPassword = bcrypt.hashSync(password, saltRounds);
-            DBManager().createUser({ email, username, hashedPassword });
+            DBManager().createUser({ username, hashedPassword });
             return res.status(200).json({ 'message': 'Successfully created a User!'})
         } catch (error) {
             console.log(error);
