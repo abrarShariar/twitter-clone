@@ -8,8 +8,9 @@ export const Container = styled.div`
 `;
 export const Column = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: ${props => props.width};
   background-color: ${props => props.color};
-  justify-content: ${props => (props.justifyRight ? 'flex-end' : 'flex-start')};
 `;

@@ -4,7 +4,7 @@ const DBManager = () => {
     const db = new sqlite3.Database('./db/twitter.db', (err) => {
         if (err) {
             return console.error(err.message);
-          }
+        }
         console.log('Connected to the in-memory SQlite database.');
     });
 
@@ -13,12 +13,21 @@ const DBManager = () => {
             const sql = `
                 CREATE TABLE IF NOT EXISTS Users (
                     id INTEGER PRIMARY KEY,
-                    email TEXT NOT NULL UNIQUE,
                     username TEXT NOT NULL UNIQUE,
-                    password TEXT NOT NULL
+                    password TEXT NOT NULL,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             `;
-            db.run(sql);
+
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    resolve(true);
+                });
+            });
         },
 
         createTweetsTable: function() {
@@ -27,32 +36,48 @@ const DBManager = () => {
                     id INTEGER PRIMARY KEY,
                     user_id INTEGER NOT NULL,
                     tweet TEXT,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY(user_id) REFERENCES Users(id)
                 )
             `;
-            db.run(sql);
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(err.message);
+                    }
+                    resolve(true);
+                });
+            });
         },
     
-        createUser: function ({ email, username, hashedPassword }) {
+        createUser: function ({ username, hashedPassword }) {
             const sql = `
-                INSERT INTO Users (
-                    email, username, password
+                INSERT INTO Users ( 
+                    username, password
                 ) VALUES (
-                    "${email}", "${username}", "${hashedPassword}"
+                    "${username}", "${hashedPassword}"
                 )
             `;
-    
-            db.run(sql);
+            return new Promise((resolve, reject) => {
+                db.run(sql, (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        reject(false);
+                    }
+                    resolve(true);
+                });
+            });
         },
 
-        getUserByUsername: function (username) {
+        getUserByKey: function (key, value) {
             const sql = `
                 SELECT 
-                    username, password
+                    id, username, password
                 FROM 
                     Users
                 WHERE
-                    username = "${username}"
+                    ${key} = "${value}"
             `;
 
             return new Promise((resolve, reject) => {
@@ -74,7 +99,6 @@ const DBManager = () => {
                     "${userId}", "${tweet}"
                 )
             `;
-            db.run(sql);
             return new Promise((resolve, reject) => {
                 db.run(sql, (err) => {
                     if (err) {
@@ -84,7 +108,32 @@ const DBManager = () => {
                     resolve(true);
                 });
             })
+        },
+
+        getTweets: function (limit = 100, offset = 0) {
+            const sql = `
+                SELECT 
+                    Tweets.id, Tweets.user_id, Users.username, Tweets.tweet, Tweets.timestamp
+                FROM 
+                    Tweets
+                JOIN
+                    Users
+                ON 
+                    Tweets.user_id = Users.id
+                ORDER BY Tweets.timestamp DESC
+                LIMIT ${limit}
+                OFFSET ${offset}
+            `;
+            return new Promise((resolve, reject) => {
+                db.all(sql, (err, row) => {
+                    if (err) {
+                        reject(err.message);
+                    }
+                    resolve(row);
+                });
+            });
         }
+
     }
 }
 

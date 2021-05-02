@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { grey, blue, lightBlue } from '../../../global-styles';
+import { grey, blue, lightBlue, darkBlue } from '../../../global-styles';
 import { Star } from 'styled-icons/boxicons-regular';
 import { Twitter } from 'styled-icons/boxicons-logos';
 
@@ -40,3 +40,18 @@ export const TwitterLogo = styled(Twitter).attrs({
     margin-bottom: 5px;
   `;
   
+export const LogoutButton = styled.button`
+    width: 90px;
+    height: 40px;
+    background-color: ${blue};
+    border: none;
+    border-radius: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    :hover {
+      background-color: ${darkBlue};
+    }
+`;

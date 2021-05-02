@@ -5,9 +5,8 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 
 function isAuthenticated() {
-    const username = sessionStorage.getItem('username');
-    const name = sessionStorage.getItem('password');
-    return username && name;
+    const isLoggedInTwitter = sessionStorage.getItem('isLoggedInTwitter');
+    return isLoggedInTwitter;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

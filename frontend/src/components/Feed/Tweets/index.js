@@ -10,17 +10,9 @@ import {
   UserData,
   TweetData,
   TweetAuthor,
-  ArrowDown,
-  Content,
-  Actions,
-  Answer,
-  Retweet,
-  Like,
-  Export,
-  Stats,
+  Content
 } from './styles';
 
-import ReactTimeAgo from 'react-time-ago';
 
 export default function Tweets({ tweets }) {
   return (
@@ -34,25 +26,16 @@ export default function Tweets({ tweets }) {
             <RightContainer>
               <Header>
                 <UserData>
-                  <TweetAuthor>{tweet.author}</TweetAuthor>
-                  <TweetData>@{tweet.user}</TweetData>
+                  <TweetAuthor>{tweet.username}</TweetAuthor>
+                  <TweetData>@{tweet.username}</TweetData>
                   <TweetData>
-                    ·{' '}
-                    <ReactTimeAgo date={Number(tweet.createdAt)} locale="en" />
+                    {tweet.timestamp}
                   </TweetData>
                 </UserData>
-                <ArrowDown />
               </Header>
               <Content>
-                <span>{tweet.message}</span>
+                <span>{tweet.tweet}</span>
               </Content>
-              <Actions>
-                <Answer />
-                <Retweet />
-                <Like />
-                <Export />
-                <Stats />
-              </Actions>
             </RightContainer>
           </Tweet>
         ))}
