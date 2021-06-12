@@ -4,8 +4,8 @@ Please run the followings to set up and running the project:
 
 - Clone the project: 
 ```
-> git clone https://github.com/linkx-assignments/msg-web-abrarShariar.git
-> cd msg-web-abrarShariar
+> git clone https://github.com/twitter-clone.git
+> cd twitter-clone
 ```
 
 - Set up the backend
